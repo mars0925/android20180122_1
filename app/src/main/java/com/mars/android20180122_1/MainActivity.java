@@ -134,5 +134,23 @@ API23版本才能找到data API26有bug
         db.insert("students", null, cv);
         db.close();
     }
+    public void click11(View v)
+    {   //更新資料
+        File dbFile = new File(getFilesDir(), "student.db");
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(dbFile.getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
+        ContentValues cv = new ContentValues();
+        cv.put("score", 60);
+        //可以用db.execSQL的方法寫SQL方式來操作
+        db.update("students",cv,"_id = ?",new String[]{"2"});
+        db.close();
+    }
+
+    public void click12(View v)
+    {   //刪除資料
+        File dbFile = new File(getFilesDir(), "student.db");
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(dbFile.getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
+        db.delete("students","_id=?",new String[]{"3"});
+    }
+
 }
 
